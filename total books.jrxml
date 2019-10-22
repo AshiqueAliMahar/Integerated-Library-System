@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="total books" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="14151bfe-0724-4d00-ab41-f7a49fec07e4">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Library management system mariadb"/>
+	<property name="com.jaspersoft.studio.unit." value="inch"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT count(bk_no),bk_category FROM books group by bk_category]]>
+	</queryString>
+	<field name="count(bk_no)" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="count(bk_no)"/>
+	</field>
+	<field name="bk_category" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="bk_category"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="books"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="802">
+			<pie3DChart>
+				<chart evaluationTime="Report" theme="eye.candy.sixties">
+					<reportElement x="0" y="0" width="560" height="801" uuid="4317231c-d0c2-4ba0-82ba-663fc556b165"/>
+					<chartTitle>
+						<font fontName="American Typewriter" size="41"/>
+						<titleExpression><![CDATA["Total Books"]]></titleExpression>
+					</chartTitle>
+					<chartSubtitle>
+						<font size="33"/>
+					</chartSubtitle>
+					<chartLegend position="Bottom">
+						<font fontName="American Typewriter" size="25" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+					</chartLegend>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{bk_category}]]></keyExpression>
+					<valueExpression><![CDATA[$F{count(bk_no)}]]></valueExpression>
+					<labelExpression><![CDATA[$F{count(bk_no)}+""]]></labelExpression>
+				</pieDataset>
+				<pie3DPlot>
+					<plot/>
+					<itemLabel/>
+				</pie3DPlot>
+			</pie3DChart>
+		</band>
+	</title>
+</jasperReport>
